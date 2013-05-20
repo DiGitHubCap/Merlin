@@ -1,0 +1,102 @@
+# Magic plugin inspired by Merlin.
+# Copyright (C) 2013 Andrew Stevanus (Hoot215) <hoot893@gmail.com>
+# 
+# Copying and distribution of this file, with or without modification,
+# are permitted in any medium without royalty provided the copyright
+# notice and this notice are preserved.  This file is offered as-is,
+# without any warranty.
+
+name: Merlin
+main: me.hoot215.merlin.Merlin
+version: 2.2.4
+author: Hoot215
+permissions:
+  merlin.*:
+    description: 'Gives access to everything in Merlin'
+    default: op
+    children:
+      merlin.standard: true
+      merlin.admin: true
+  merlin.standard:
+    description: 'Gives access to standard features in Merlin'
+    default: true
+    children:
+      merlin.magic: true
+      merlin.spell: true
+      merlin.unbind: true
+      merlin.spells: true
+  merlin.admin:
+    description: 'Gives access to admin features in Merlin'
+    children:
+      merlin.admin.setlevel: true
+      merlin.admin.update: true
+      merlin.admin.download: true
+  merlin.magic:
+    description: "Gives access to the command '/magic'"
+    children:
+      merlin.magic.types: true
+      merlin.magic.levels: true
+  merlin.magic.types:
+    description: "Gives access to the command '/magic types'"
+  merlin.magic.levels:
+    description: "Gives access to the command '/magic levels'"
+  merlin.spell:
+    description: "Gives access to the command '/spell'"
+  merlin.unbind:
+    description: "Gives access to the command '/unbind'"
+  merlin.spells:
+    description: "Gives access to the command '/spells'"
+  merlin.admin.setlevel:
+    description: "Gives access to the command '/merlin admin changelevel'"
+  merlin.admin.update:
+    description: "Gives access to the command '/merlin admin update'"
+  merlin.admin.download:
+    description: "Gives access to the command '/merlin admin download'"
+commands:
+  merlin:
+    description: 'Displays help for Merlin'
+    permission: merlin.merlin
+    permission-message: "§cYou don't have permission to use this command!"
+    usage: |
+      §b==== §1Merlin §7by §9Hoot215 §b====
+      §c========= §4Merlin Help §c=========
+      §3/<command> §7- §fDisplays help
+      §3/<command> admin setlevel <player> <type> <level> §7- §fSets the level of <type> to <level> for <player>
+      §3/<command> admin update §7- §fChecks if a newer version is available
+      §3/<command> admin download §7- §fDownloads the latest version
+      §a========= §2Magic Help §a=========
+      §9/magic §7- §fDisplays help
+      §9/magic types §7- §fDisplays types of magic
+      §9/magic levels §7- §fDisplays your levels for all types of magic
+      §e========= §6Spells Help §e=========
+      §a/spell [spell] §7- §fDisplays currently bound spell or binds a new spell. Use 'none' to clear
+      §a/unbind [all] §7- §fUnbinds a spell from your current slot. Use 'all' to unbind all slots
+      §a/spells [type] §7- §fLists all available spells, optionally of type <type>
+  magic:
+    description: "Displays help for magic"
+    permission: merlin.magic
+    permission-message: "§cYou don't have permission to use this command!"
+    usage: |
+      §b==== §1Merlin §7by §9Hoot215 §b====
+      §a========= §2Magic Help §a=========
+      §9/magic §7- §fDisplays help
+      §9/magic types §7- §fDisplays types of magic
+      §9/magic levels §7- §fDisplays your levels for all types of magic
+    aliases: [m]
+  spell:
+    description: "Displays currently bound spell or binds a new spell. Use 'none' to clear"
+    permission: merlin.spell
+    permission-message: "§cYou don't have permission to use this command!"
+    usage: '§3/<command> §b[spell]'
+    aliases: [s, cast, c, bind, b]
+  unbind:
+    description: "Unbinds a spell from your current slot. Use 'all' to unbind all slots"
+    permission: merlin.unbind
+    permission-message: "§cYou don't have permission to use this command!"
+    usage: '§3/<command> §b[all]'
+    aliases: [ub]
+  spells:
+    description: 'Lists all available spells, optionally of a certain type'
+    permission: merlin.spells
+    permission-message: "§cYou don't have permission to use this command!"
+    usage: '§3/<command>'
